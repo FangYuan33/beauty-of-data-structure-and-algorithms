@@ -28,8 +28,10 @@ public class BubbleSort {
 
     private static void bubbleSortImprove(int[] nums) {
         for (int i = nums.length - 1; i > 0; i--) {
+            // 优化标志位: 如果未发生交换则证明已经有序
             boolean flag = false;
             for (int j = 0; j < i; j++) {
+                // 比较并交换位置
                 if (nums[j] > nums[j + 1]) {
                     int temp = nums[j];
                     nums[j] = nums[j + 1];
