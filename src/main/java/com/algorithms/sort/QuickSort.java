@@ -16,7 +16,10 @@ public class QuickSort {
             return;
         }
 
+        // 哨兵划分
         int partition = partition(nums, left, right);
+
+        // 分别排序两个子数组
         quickSort(nums, left, partition - 1);
         quickSort(nums, partition + 1, right);
     }

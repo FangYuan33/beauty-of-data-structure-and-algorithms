@@ -254,6 +254,58 @@ while (i <= n) {
 > 归并排序的时间复杂度一直是 $O(nlogn)$，而快速排序在最坏的情况下时间复杂度为 $O(n^2)$，为什么归并排序没有快速排序应用广泛呢？
 答: 因为归并排序是非原地排序，在合并阶段需要借助非常量级的额外空间
 
+#### 4.2.2 快速排序
+
+- 核心思想: 快速排序同样基于分治算法的思想，与归并排序不同的是归并排序从上到下进行处理，先处理子问题，而快速排序处理过程有上到下，先分区，再处理子问题。
+  快速排序的核心操作为 **哨兵划分**，选取数组中某个数为基准数，将小于基准数的排在左边，大于基准数的排在右边，之后再对两个小数组分别执行快速排序。
+
+```java
+    private static void quickSort(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        // 哨兵划分
+        int partition = partition(nums, left, right);
+        
+        // 分别排序两个子数组
+        quickSort(nums, left, partition - 1);
+        quickSort(nums, partition + 1, right);
+    }
+
+    /**
+     * 哨兵划分
+     */
+    private static int partition(int[] nums, int left, int right) {
+        // 以 nums[left] 作为基准数，并记录基准数索引
+        int base = nums[left];
+        int baseIndex = left;
+
+        while (left < right) {
+            while (left < right && nums[right] >= base)
+                right--;             // 从右向左找首个小于基准数的元素
+            while (left < right && nums[left] <= base)
+                left++;              // 从左向右找首个大于基准数的元素
+            swap(nums, left, right); // 交换这两个元素
+        }
+        swap(nums, baseIndex, left); // 将基准数交换到两子数组的分界线
+        return left;                 // 返回基准数索引
+    }
+
+    private static void swap(int[] nums, int left, int right) {
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
+    }
+```
+
+- **平均时间复杂度**: $O(nlogn)$
+- **最差时间复杂度**: $O(n^2)$
+- **空间复杂度**: 最差情况下，递归深度为n，所以空间复杂度为 $O(n)$
+- **原地排序**
+- **非稳定排序**
+- **自适应排序**
+
 ## 5. 查找算法
 ### 4.1 二分查找
 
