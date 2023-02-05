@@ -194,6 +194,66 @@ while (i <= n) {
 - **非稳定排序**: 会改变等值元素之间的相对位置
 - **非自适应排序**: 最好/平均/最坏时间复杂度均为 $O(n^2)$
 
+### 4.2 $O(nlogn)$
+
+归并排序和快速排序都是基于分治算法的思想实现的排序，但是快速排序应用更加广泛
+
+#### 4.2.1 归并排序
+
+- 核心思想: 采用分治算法思想，分**划分**和**合并**两个阶段。
+  划分阶段不断将数组从中点位置分开，直到划分长度为1；合并阶段是将划分后的排序数组合并排序的长数组
+
+```java
+    private static void mergeSort(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        // 划分阶段，不断地从中点划分
+        int mid = (left + right) / 2;
+        mergeSort(nums, left, mid);
+        mergeSort(nums, mid + 1, right);
+        
+        // 合并阶段
+        merge(nums, left, mid, right);
+    }
+
+    private static void merge(int[] nums, int left, int mid, int right) {
+        // 辅助数组，注意该数组取的是原数组[left, right]范围
+        int[] temp = Arrays.copyOfRange(nums, left, right + 1);
+
+        // 左数组 在辅助数组的范围
+        int leftBegin = 0, leftEnd = mid - left;
+        // 右数组 在辅助数组的范围
+        int rightBegin = mid + 1 - left, rightEnd = right - left;
+
+        // 在原数组的范围内直接借助左右数组覆盖
+        for (int i = left; i <= right; i++) {
+            // 左数组用完了直接赋值右数组
+            if (leftBegin > leftEnd) {
+                nums[i] = temp[rightBegin++];
+            } else if (rightBegin > rightEnd || temp[leftBegin] <= temp[rightBegin]) {
+                // 右数组用完了或者左数组数小
+                nums[i] = temp[leftBegin++];
+            } else {
+                // 左右数组都没用完，但是左数组比较大
+                nums[i] = temp[rightBegin++];
+            }
+        }
+    }
+```
+
+观察归并排序划分阶段的代码，其实就是二叉树的后序遍历
+
+- **空间复杂度**: 借助辅助数组实现合并，使用 $O(n)$ 的额外空间；递归深度为 $logn$，使用 $O(logn)$ 大小的栈帧空间。
+  忽略低阶部分，所以空间复杂度为 $O(n)$
+- **非原地排序**
+- **稳定排序**
+- **非自适应排序**
+
+> 归并排序的时间复杂度一直是 $O(nlogn)$，而快速排序在最坏的情况下时间复杂度为 $O(n^2)$，为什么归并排序没有快速排序应用广泛呢？
+答: 因为归并排序是非原地排序，在合并阶段需要借助非常量级的额外空间
+
 ## 5. 查找算法
 ### 4.1 二分查找
 

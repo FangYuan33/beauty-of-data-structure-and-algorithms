@@ -19,15 +19,17 @@ public class MergeSort {
             return;
         }
 
+        // 划分阶段，不断地从中点划分
         int mid = (left + right) / 2;
-        // 类似后续遍历
         mergeSort(nums, left, mid);
         mergeSort(nums, mid + 1, right);
+
+        // 合并阶段
         merge(nums, left, mid, right);
     }
 
     private static void merge(int[] nums, int left, int mid, int right) {
-        // 辅助数组
+        // 辅助数组，注意该数组取的是原数组[left, right]范围
         int[] temp = Arrays.copyOfRange(nums, left, right + 1);
 
         // 左数组 在辅助数组的范围
