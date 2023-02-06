@@ -316,6 +316,49 @@ while (i <= n) {
 桶排序的时间复杂度虽然为$O(n)$，但是它对数据是有要求的，待排序数组需要容易划分成m个"桶"，并且"桶"与"桶"之间有着"天然"的大小顺序，
 这样在每个桶中的值排序完成后，取出结果便是有序的
 
+```java
+    /**
+     * 桶排序
+     * 指定数据范围为0 - 50，分桶为5个，每10个数为一个桶
+     */
+    @SuppressWarnings("unchecked")
+    private static void bucketSort(int[] nums) {
+        // 声明5个桶
+        ArrayList<Integer>[] buckets = new ArrayList[5];
+        Arrays.fill(buckets, new ArrayList<Integer>());
+
+        // 数组元素分桶
+        intoBucket(buckets, nums);
+
+        // 出桶
+        outOfBucket(buckets, nums);
+    }
+
+    private static void intoBucket(ArrayList<Integer>[] buckets, int[] nums) {
+        for (int num : nums) {
+            int bucketIndex = num / 10;
+            buckets[bucketIndex].add(num);
+        }
+    }
+
+    private static void outOfBucket(ArrayList<Integer>[] buckets, int[] nums) {
+        for (ArrayList<Integer> bucket : buckets) {
+            // 先排序 再出桶
+            bucket.sort(Comparator.comparingInt(x -> x));
+
+            // 出桶覆盖原数组值
+            int numsIndex = 0;
+            for (Integer num : bucket) {
+                nums[numsIndex++] = num;
+            }
+        }
+    }
+```
+
+- **空间复杂度**: $O(n)$
+- **非原地排序**
+- **稳定排序**
+
 - 桶排序非常适合用在外部排序中。比如，有10GB的订单需要按照金额排序，但是服务器的内存只有几百MB，那么该如何做？
 
 采用桶排序的方法，假定金额为 $1 - 1000$ 且均匀分布，那么我们划分出100个桶，每个桶内的金额范围为10元，这样我们逐个将每个桶进行排序，
