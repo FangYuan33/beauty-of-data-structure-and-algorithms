@@ -65,24 +65,24 @@ while (i <= n) {
 #### 完美二叉树
 在完美二叉树中，所有结点的度 = 2 ；若树高度 = h ，则结点总数 = $2^(h + 1) - 1$，呈标准的指数级关系，反映着自然界中常见的细胞分裂。
 
-![img.png](img.png)
+![img.png](src/main/resources/images/tree/img.png)
 
 #### 完满二叉树
 除了叶结点之外，其余所有结点都有两个子结点。
 
-![img_1.png](img_1.png)
+![img_1.png](src/main/resources/images/tree/img_1.png)
 
 #### 完全二叉树
 「完全二叉树 Complete Binary Tree」只有最底层的结点未被填满，且最底层结点尽量靠左填充。
 
 **完全二叉树非常适合用数组来表示**。如果按照层序遍历序列的顺序来存储，那么空结点 null 一定全部出现在序列的尾部，因此我们就可以不用存储这些 null 了。
 
-![img_2.png](img_2.png)
+![img_2.png](src/main/resources/images/tree/img_2.png)
 
 #### 平衡二叉树
 「平衡二叉树 Balanced Binary Tree」中任意结点的左子树和右子树的高度之差的绝对值 ≤ 1
 
-![img_3.png](img_3.png)
+![img_3.png](src/main/resources/images/tree/img_3.png)
 
 #### 二叉搜索树
 「二叉搜索树 Binary Search Tree」满足以下条件：
@@ -91,7 +91,7 @@ while (i <= n) {
 
 （二叉搜索树不允许存在重复结点，否则将会违背其定义）
 
-![img_4.png](img_4.png)
+![img_4.png](src/main/resources/images/tree/img_4.png)
 
 #### AVL树
 「AVL 树」既是「二叉搜索树」又是「平衡二叉树」，同时满足这两种二叉树的所有性质，因此又被称为「平衡二叉搜索树」，它能在不断地添加和删除节点时保证AVL树不发生退化。
