@@ -2,8 +2,7 @@ package com.algorithms.deque;
 
 public class Test {
     public static void main(String[] args) {
-        ArrayDeque deque = new ArrayDeque(3);
-//        LinkedListDeque deque = new LinkedListDeque();
+        LinkedListDeque deque = new LinkedListDeque();
 
         deque.offerFirst(1);
         deque.offerFirst(2);
