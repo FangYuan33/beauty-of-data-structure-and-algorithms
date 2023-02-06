@@ -98,6 +98,69 @@ while (i <= n) {
 
 AVL树的独特之处在于旋转操作（左旋，先左旋再右旋，右旋，先右旋再左旋），其可**在不影响二叉树中序遍历的前提下，使失衡结点回复平衡**
 
+### 2.6 堆（优先队列）
+
+「堆 Heap」是一棵限定条件下的「完全二叉树」。根据成立条件，堆主要分为两种类型：
+- 「小顶堆 Min Heap」，任意结点的值 ≤ 其子结点的值
+- 「大顶堆 Max Heap」，任意结点的值 ≥ 其子结点的值
+
+![img.png](src/main/resources/images/heap/img.png)
+
+其中二叉树中的根结点对应「堆顶」，底层最靠右结点对应「堆底」。
+
+#### 堆的存储与表示
+
+「完全二叉树」非常适合使用「数组」来表示，给定索引 $i$，那么其左子结点索引为 $2i + 1$、右子结点索引为 $2i + 2$、父结点索引为 $(i - 1) / 2$，若索引越界，则代表空结点或结点不存在。
+
+![img_1.png](src/main/resources/images/heap/img_1.png)
+
+#### 元素入堆
+
+以大顶堆为例，先将其添加至堆底，由于该值可能大于堆中其他元素，所以要从底至顶执行堆化。具体步骤: 比较该值与其父结点的大小，若插入结点更大则将它们交换，
+直至遇到无需交换的结点或越过数组范围时结束。
+
+![img_2.png](src/main/resources/images/heap/img_2.png)
+
+![img_3.png](src/main/resources/images/heap/img_3.png)
+
+![img_4.png](src/main/resources/images/heap/img_4.png)
+
+![img_5.png](src/main/resources/images/heap/img_5.png)
+
+![img_6.png](src/main/resources/images/heap/img_6.png)
+
+- **时间复杂度**: $O(logn)$
+
+#### 堆顶元素出堆
+
+大顶堆堆顶元素出堆步骤
+1. 交换堆顶元素和堆底元素
+2. 交换完成后，将堆底元素删除
+3. 从根节点开始，从顶至底执行堆化
+
+与元素入堆相比，出堆堆化与入堆堆化方向相反，比较的是根结点和其最大子结点的值，
+若根节点小于该子结点，则执行交换，循环该步骤，直至无需交换或者越过数组范围时结束。
+
+![img_7.png](src/main/resources/images/heap/img_7.png)
+
+![img_8.png](src/main/resources/images/heap/img_8.png)
+
+![img_9.png](src/main/resources/images/heap/img_9.png)
+
+![img_10.png](src/main/resources/images/heap/img_10.png)
+
+![img_11.png](src/main/resources/images/heap/img_11.png)
+
+![img_12.png](src/main/resources/images/heap/img_12.png)
+
+![img_13.png](src/main/resources/images/heap/img_13.png)
+
+![img_14.png](src/main/resources/images/heap/img_14.png)
+
+![img_15.png](src/main/resources/images/heap/img_15.png)
+
+![img_16.png](src/main/resources/images/heap/img_16.png)
+
 ## 3. 递归
 **不要试图模拟计算机递归调用的过程！** **不要试图用你聪明的大脑去分解递归的每个步骤！** 而是思考递推公式，找出终止条件，然后将以上信息"翻译"成代码！
 
