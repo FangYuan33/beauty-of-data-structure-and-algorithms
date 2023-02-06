@@ -467,8 +467,75 @@ AVL树的独特之处在于旋转操作（左旋，先左旋再右旋，右旋�
 分别写到100个小文件中，这样按顺序读取这100个小文件写到大文件中，就完成了该排序。如果金额不是均匀分布的，那么我们对分到订单数量过多的桶再进行桶划分，
 直到保证每个桶内的数据量满足内存大小要求。
 
+#### 4.3.2 计数排序
+
+计数排序是桶排序的一种特殊情况，与桶排序类似，只是桶的大小粒度不一样，计数排序桶的粒度是**非负整数的单位值**，即待排序数组中最大值为k，则划分成k + 1个桶。
+我们以如下例子来理解计数排序。
+
+```java
+public class CountingSort {
+    public static void main(String[] args) {
+        // 假设8个考生，分数的范围是0 - 5分，他们的分数为[2, 5, 3, 0, 2, 3, 0, 3]，排序这些学生的分数
+        int[] students = new int[]{2, 5, 3, 0, 2, 3, 0, 3};
+
+        // 计数排序
+        countingSort(students);
+
+        System.out.println(Arrays.toString(students));
+    }
+
+  /**
+   * 计数排序的计数体现在小于等于某个数出现的次数 - 1 即为该数在原数组排序后的位置
+   */
+  private static void countingSort(int[] nums) {
+        if (nums.length <= 1) {
+            return;
+        }
+
+        // 寻找数组中的最大值来以此定义max + 1个桶
+        int max = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+            }
+        }
+
+        // 定义桶，索引范围即数组值的最大范围，每个桶中保存的是该数字出现的次数，计数排序的计数概念出现
+        int[] bucket = new int[max + 1];
+        Arrays.fill(bucket, 0);
+
+        // 计算每个数的个数在桶中累加
+        for (int num : nums) {
+            bucket[num]++;
+        }
+        // 依次累加桶中的数，该数表示小于等于该索引值的数量
+        for (int i = 1; i < bucket.length; i++) {
+            bucket[i] += bucket[i - 1];
+        }
+
+        // 创建临时数组来保存排序结果值
+        int[] res = new int[nums.length];
+        // 倒序遍历原数组
+        for (int i = nums.length - 1; i >= 0; i--) {
+            // 根据桶中的 计数 找出该数的索引
+            int index = bucket[nums[i]] - 1;
+            // 根据索引在结果数组中赋值
+            res[index] = nums[i];
+            // 该数分配完成后，需要将桶中的计数数量-1
+            bucket[nums[i]]--;
+        }
+
+        // 结果数组覆盖原数组
+        System.arraycopy(res, 0, nums, 0, res.length);
+    }
+}
+```
+
+- **从后往前遍历**保证计数排序为稳定性排序
+- 时间复杂度为 $O(n)$，但是要保证数据在范围不大的场景下，否则就不适用计数排序了
+
 ## 5. 查找算法
-### 4.1 二分查找
+### 5.1 二分查找
 
 分 **双闭区间** 和 **左闭右开** 区间的两种写法
 - **双闭区间**: 定义两指针时，左右指针都在数组范围内，那么查找的结束条件便是 left > right
