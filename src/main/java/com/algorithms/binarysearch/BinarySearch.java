@@ -27,7 +27,7 @@ public class BinarySearch {
 
     /**
      * 左闭右开区间写法
-     * 即 left 和 right 指向的事数组的首元素和 尾元素 + 1
+     * 即 left 和 right 指向的是数组的首元素和 尾元素 + 1
      */
     public static int leftCloseRightOpen(int[] nums, int target) {
         int left = 0, right = nums.length;

@@ -644,8 +644,62 @@ public class CountingSort {
 ```
 
 ## 5. 查找算法
+
+二分查找的时间复杂度是惊人的 $O(logn)$ ，甚至有时会比 $O(1)$ 时间复杂度的算法效率要高，因为时间复杂度仅仅代表的是增长趋势，
+我们会省略其中的低阶常数等等，$O(1)$ 可能是比较大的值，如 $O(10000)$。
+
 ### 5.1 二分查找
 
 分 **双闭区间** 和 **左闭右开** 区间的两种写法
 - **双闭区间**: 定义两指针时，左右指针都在数组范围内，那么查找的结束条件便是 left > right
+
+```java
+    public static int doubleClose(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+
+        // 搜索区间为空时结束循环，即 left > right
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
+```
+
+其中mid值的计算可以进行优化，第一种写法是避免 `left + right` 的写法超过整数的表示范围，第二种是计算机更喜欢位运算
+
+```java
+int mid = left + (right - left) / 2;
+int mid = left + (right - left) >> 1;
+```
+
 - **左闭右开**: 右边开区间则表示右指针不在查找的数组范围内，那么查找的结束条件便是 left = right
+
+```java
+    public static int leftCloseRightOpen(int[] nums, int target) {
+        int left = 0, right = nums.length;
+
+        // 搜索区间为空时结束循环，左闭右开区间为空的条件是 left = right
+        while (left < right) {
+            int mid = (left + right) / 2;
+
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid;
+            } else {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
+```
