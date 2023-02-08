@@ -16,12 +16,30 @@ public class QuickSort {
             return;
         }
 
+        // 中位数基准数优化
+        betterBase(nums, left, right);
+
         // 哨兵划分
         int partition = partition(nums, left, right);
 
         // 分别排序两个子数组
         quickSort(nums, left, partition - 1);
         quickSort(nums, partition + 1, right);
+    }
+
+    /**
+     * 优化基准数选择，在最左元素、中间元素和最右元素中选取其中的中位数作为基准数
+     * 基准数的索引为left，所以找到中位数后交换位置即可，若最左即为中位数则不做处理
+     */
+    private static void betterBase(int[] nums, int left, int right) {
+        int mid = (left + right) / 2;
+
+        // 异或 相同为0 不同为1，那么只要满足该数据比其中一个大其中一个小即为中位数
+        if ((nums[right] < nums[mid]) ^ (nums[right] < nums[right])) {
+            swap(nums, left, right);
+        } else if ((nums[mid] < nums[left]) ^ (nums[mid] < nums[right])) {
+            swap(nums, left, mid);
+        }
     }
 
     /**
