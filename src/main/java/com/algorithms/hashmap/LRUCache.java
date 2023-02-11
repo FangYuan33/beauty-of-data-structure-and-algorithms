@@ -35,7 +35,7 @@ public class LRUCache {
         this.size = 0;
         this.capacity = capacity;
 
-        // 哨兵结点
+        // 哨兵节点
         this.head = new LinkedNode(-1, -1);
         this.tail = new LinkedNode(-1, -1);
         head.next = tail;
@@ -43,7 +43,7 @@ public class LRUCache {
     }
 
     /**
-     * LRU查找结点，存在的话将该节点移到头结点
+     * LRU查找节点，存在的话将该节点移到头节点
      */
     public int get(int key) {
         LinkedNode node = cache.get(key);
