@@ -311,6 +311,47 @@ public class LRUCache {
 }
 ```
 
+#### 哈希表的特殊形式: 位图
+
+位图用来判断大范围数据中某个数是否存在非常合适，占用空间极小，因为每个数字仅用0或1一**位**来标记。但是在Java这种高级语言中，布尔值占用多个字节，
+远远比**位**大，所以 可以通过使用字符数组来表示位图，每个char字符是2字节即16位，那么每个元素就能表示16个数字的存在情况，通过 `num / 16` 定位到它在字符数组中的位置，
+通过 `num % 16` 来找到该元素在该字符下的哪个二进制位上，存在为1不存在为0。
+
+```java
+public class BitMap {
+    // 每个字符是16位 用于表示16个数字的存在情况
+    private final char[] bytes;
+
+    // 数据量大小
+    private final int bits;
+
+    public BitMap(int bits) {
+        this.bits = bits;
+        this.bytes = new char[bits / 16 + 1];
+    }
+
+    public void set(int num) {
+        if (num > bits) {
+            return;
+        }
+
+        int byteIndex = num / 16;
+        // 标记该数字在数组中存在
+        bytes[byteIndex] |= (1 << num % 16);
+    }
+
+    public boolean get(int num) {
+        if (num > bits) {
+            return false;
+        } else {
+            int byteIndex = num / 16;
+
+            return (bytes[byteIndex] & (1 << num % 16)) != 0;
+        }
+    }
+}
+```
+
 ## 3. 递归
 **不要试图模拟计算机递归调用的过程！** **不要试图用你聪明的大脑去分解递归的每个步骤！** 而是思考递推公式，找出终止条件，然后将以上信息"翻译"成代码！
 
