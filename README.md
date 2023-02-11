@@ -119,15 +119,21 @@ AVL树的独特之处在于旋转操作（左旋，先左旋再右旋，右旋�
 以大顶堆为例，先将其添加至堆底，由于该值可能大于堆中其他元素，所以要从底至顶执行堆化。具体步骤: 比较该值与其父结点的大小，若插入结点更大则将它们交换，
 直至遇到无需交换的结点或越过数组范围时结束。
 
-![img_2.png](src/main/resources/images/heap/img_2.png)
+[元素入堆图示](https://www.hello-algo.com/chapter_heap/heap/#_3)
 
-![img_3.png](src/main/resources/images/heap/img_3.png)
+[//]: # (![img_2.png]&#40;src/main/resources/images/heap/img_2.png&#41;)
 
-![img_4.png](src/main/resources/images/heap/img_4.png)
+[//]: # ()
+[//]: # (![img_3.png]&#40;src/main/resources/images/heap/img_3.png&#41;)
 
-![img_5.png](src/main/resources/images/heap/img_5.png)
+[//]: # ()
+[//]: # (![img_4.png]&#40;src/main/resources/images/heap/img_4.png&#41;)
 
-![img_6.png](src/main/resources/images/heap/img_6.png)
+[//]: # ()
+[//]: # (![img_5.png]&#40;src/main/resources/images/heap/img_5.png&#41;)
+
+[//]: # ()
+[//]: # (![img_6.png]&#40;src/main/resources/images/heap/img_6.png&#41;)
 
 - **时间复杂度**: $O(logn)$
 
@@ -141,25 +147,36 @@ AVL树的独特之处在于旋转操作（左旋，先左旋再右旋，右旋�
 与元素入堆相比，出堆堆化与入堆堆化方向相反，比较的是根结点和其最大子结点的值，
 若根节点小于该子结点，则执行交换，循环该步骤，直至无需交换或者越过数组范围时结束。
 
-![img_7.png](src/main/resources/images/heap/img_7.png)
+[元素出堆图示](https://www.hello-algo.com/chapter_heap/heap/#_4)
 
-![img_8.png](src/main/resources/images/heap/img_8.png)
+[//]: # (![img_7.png]&#40;src/main/resources/images/heap/img_7.png&#41;)
 
-![img_9.png](src/main/resources/images/heap/img_9.png)
+[//]: # ()
+[//]: # (![img_8.png]&#40;src/main/resources/images/heap/img_8.png&#41;)
 
-![img_10.png](src/main/resources/images/heap/img_10.png)
+[//]: # ()
+[//]: # (![img_9.png]&#40;src/main/resources/images/heap/img_9.png&#41;)
 
-![img_11.png](src/main/resources/images/heap/img_11.png)
+[//]: # ()
+[//]: # (![img_10.png]&#40;src/main/resources/images/heap/img_10.png&#41;)
 
-![img_12.png](src/main/resources/images/heap/img_12.png)
+[//]: # ()
+[//]: # (![img_11.png]&#40;src/main/resources/images/heap/img_11.png&#41;)
 
-![img_13.png](src/main/resources/images/heap/img_13.png)
+[//]: # ()
+[//]: # (![img_12.png]&#40;src/main/resources/images/heap/img_12.png&#41;)
 
-![img_14.png](src/main/resources/images/heap/img_14.png)
+[//]: # ()
+[//]: # (![img_13.png]&#40;src/main/resources/images/heap/img_13.png&#41;)
 
-![img_15.png](src/main/resources/images/heap/img_15.png)
+[//]: # ()
+[//]: # (![img_14.png]&#40;src/main/resources/images/heap/img_14.png&#41;)
 
-![img_16.png](src/main/resources/images/heap/img_16.png)
+[//]: # ()
+[//]: # (![img_15.png]&#40;src/main/resources/images/heap/img_15.png&#41;)
+
+[//]: # ()
+[//]: # (![img_16.png]&#40;src/main/resources/images/heap/img_16.png&#41;)
 
 ### 2.7 哈希表
 
