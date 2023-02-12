@@ -80,13 +80,14 @@ public class MaxHeap {
 
         if (deleteNum > num) {
             // 自上而下堆化
-            heapifyTopDown(num, numIndex);
+            heapifyTopDown(numIndex);
         } else {
             heapifyDownTop(numIndex, num);
         }
     }
 
-    private void heapifyTopDown(int num, int numIndex) {
+    private void heapifyTopDown(int numIndex) {
+        int num = nums[numIndex];
         // 找到该值的索引位置
         for (int leftIndex = 2 * numIndex, rightIndex = leftIndex + 1; leftIndex <= size;
              leftIndex = numIndex * 2, rightIndex = leftIndex + 1) {
@@ -94,11 +95,10 @@ public class MaxHeap {
             if (num < nums[leftIndex]) {
                 swap(leftIndex, numIndex);
                 numIndex = leftIndex;
-            } else if (rightIndex <= size && num < nums[rightIndex]) {
+            }
+            if (rightIndex <= size && num < nums[rightIndex]) {
                 swap(rightIndex, numIndex);
                 numIndex = rightIndex;
-            } else {
-                break;
             }
         }
     }
