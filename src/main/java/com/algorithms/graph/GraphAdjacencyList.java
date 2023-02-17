@@ -65,6 +65,47 @@ public class GraphAdjacencyList {
             System.out.println(entry.getKey().getVal() + ": " + tmp + ",");
         }
     }
+
+    /**
+     * 广度优先遍历
+     */
+    public List<Integer> bfs(Vertex vertex) {
+        List<Integer> res = new ArrayList<>();
+        HashSet<Vertex> visited = new HashSet<>();
+        Queue<Vertex> queue = new LinkedList<>();
+
+        queue.offer(vertex);
+        visited.add(vertex);
+        while (!queue.isEmpty()) {
+            Vertex v = queue.poll();
+            res.add(v.getVal());
+
+            for (Vertex visit : adjacencyList.get(v)) {
+                if (visited.contains(visit)) {
+                    continue;
+                }
+                queue.offer(visit);
+                visited.add(visit);
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * 深度优先遍历
+     */
+    public void dfs(Vertex vertex, List<Integer> res, HashSet<Vertex> visited) {
+        if (visited.contains(vertex)) {
+            return;
+        }
+
+        visited.add(vertex);
+        res.add(vertex.getVal());
+        for (Vertex v : adjacencyList.get(vertex)) {
+            dfs(v, res, visited);
+        }
+    }
 }
 
 class Vertex {
@@ -137,5 +178,14 @@ class TestGraphAdjacencyList {
         graph.removeVertex(v[1]);
         System.out.println("\n删除顶点 3 后，图为");
         graph.print();
+
+        System.out.println("\n广度优先搜索遍历为");
+        System.out.println(graph.bfs(v[0]));
+
+        System.out.println("\n深度优先搜索遍历为");
+        List<Integer> res = new ArrayList<>();
+        HashSet<Vertex> visited = new HashSet<>();
+        graph.dfs(v[0], res, visited);
+        System.out.println(res);
     }
 }
