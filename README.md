@@ -391,9 +391,50 @@ public class BitMap {
 
 BFS 常借助「队列」来实现，队列具有“先入先出”的性质，这与 BFS “由近及远”的思想异曲同工
 
+```java
+    // 邻接表的广度优先遍历
+    public List<Integer> bfs(Vertex vertex) {
+        List<Integer> res = new ArrayList<>();
+        HashSet<Vertex> visited = new HashSet<>();
+        Queue<Vertex> queue = new LinkedList<>();
+
+        queue.offer(vertex);
+        visited.add(vertex);
+        while (!queue.isEmpty()) {
+            Vertex v = queue.poll();
+            res.add(v.getVal());
+
+            for (Vertex visit : adjacencyList.get(v)) {
+                if (visited.contains(visit)) {
+                    continue;
+                }
+                queue.offer(visit);
+                visited.add(visit);
+            }
+        }
+
+        return res;
+    }
+```
+
 #### 深度优先遍历
 
 深度优先遍历是一种优先走到底（递归）、无路可走再回头（回溯）的遍历方式
+
+```java
+    // 邻接表的深度优先遍历
+    public void dfs(Vertex vertex, List<Integer> res, HashSet<Vertex> visited) {
+        if (visited.contains(vertex)) {
+            return;
+        }
+
+        visited.add(vertex);
+        res.add(vertex.getVal());
+        for (Vertex v : adjacencyList.get(vertex)) {
+            dfs(v, res, visited);
+        }
+    }
+```
 
 ## 3. 递归
 **不要试图模拟计算机递归调用的过程！** **不要试图用你聪明的大脑去分解递归的每个步骤！** 而是思考递推公式，找出终止条件，然后将以上信息"翻译"成代码！
