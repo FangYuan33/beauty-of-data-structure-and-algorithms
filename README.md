@@ -436,6 +436,45 @@ BFS 常借助「队列」来实现，队列具有“先入先出”的性质，�
     }
 ```
 
+#### Kahn 算法实现拓扑排序
+
+拓扑排序解决有向无环图的依赖排序，将被依赖的顶点排在前面，依赖其他顶点的顶点位置排在后面
+
+```java
+    /**
+     * 邻接表有向图 Kahn算法实现拓扑排序
+     * 规定如果A依赖B的话，那么添加A指向B的边，A的出度为1，当出度为0时将其输出到结果序列中
+     */
+    public void topoSortByKahn() {
+        List<Integer> res = new ArrayList<>(adjacencyList.size());
+        Queue<Vertex> queue = new LinkedList<>();
+
+        // 保存出度为0的顶点
+        queue0OutDegree(queue);
+        while (!queue.isEmpty()) {
+            Vertex vertex = queue.poll();
+            res.add(vertex.getVal());
+
+            // 移除这个点，再记录出度为0的点
+            removeVertex(vertex);
+            queue0OutDegree(queue);
+        }
+
+        System.out.println(res);
+    }
+
+    /**
+     * 出度为0的顶点入队
+     */
+    private void queue0OutDegree(Queue<Vertex> queue) {
+        for (Map.Entry<Vertex, List<Vertex>> vertexListEntry : adjacencyList.entrySet()) {
+            if (vertexListEntry.getValue().isEmpty()) {
+                queue.offer(vertexListEntry.getKey());
+            }
+        }
+    }
+```
+
 ## 3. 递归
 **不要试图模拟计算机递归调用的过程！** **不要试图用你聪明的大脑去分解递归的每个步骤！** 而是思考递推公式，找出终止条件，然后将以上信息"翻译"成代码！
 
