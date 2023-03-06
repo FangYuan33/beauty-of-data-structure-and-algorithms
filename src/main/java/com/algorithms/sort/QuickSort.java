@@ -35,7 +35,7 @@ public class QuickSort {
         int mid = (left + right) / 2;
 
         // 异或 相同为0 不同为1，那么只要满足该数据比其中一个大其中一个小即为中位数
-        if ((nums[right] < nums[mid]) ^ (nums[right] < nums[right])) {
+        if ((nums[right] < nums[mid]) ^ (nums[right] < nums[left])) {
             swap(nums, left, right);
         } else if ((nums[mid] < nums[left]) ^ (nums[mid] < nums[right])) {
             swap(nums, left, mid);
