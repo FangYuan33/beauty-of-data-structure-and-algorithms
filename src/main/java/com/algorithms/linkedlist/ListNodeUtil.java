@@ -36,8 +36,7 @@ public class ListNodeUtil {
         ListNode beginNode = new ListNode(beginValue++);
         pre.next = beginNode;
 
-        while (length != 0) {
-            length--;
+        while (--length != 0) {
 
             // 不断的拼接 node 节点
             beginNode.next = new ListNode(beginValue++);

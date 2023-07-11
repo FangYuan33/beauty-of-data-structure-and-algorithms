@@ -20,7 +20,7 @@ public class Exercise25 {
     /**
      * 使第二个节点成为第一个节点的后继节点
      */
-    private void insertAfter(ListNode listNode1, ListNode listNode2) {
+    public void insertAfter(ListNode listNode1, ListNode listNode2) {
         if (listNode1 == null || listNode2 == null) {
             return;
         }
