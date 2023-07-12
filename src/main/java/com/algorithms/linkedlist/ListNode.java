@@ -7,6 +7,7 @@ package com.algorithms.linkedlist;
  * @since 2023-07-11 19:56:58
  */
 public class ListNode {
+
     public int val;
     public ListNode next;
 

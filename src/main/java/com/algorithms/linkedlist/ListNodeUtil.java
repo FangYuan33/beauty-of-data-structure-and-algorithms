@@ -32,12 +32,15 @@ public class ListNodeUtil {
      * @param beginValue 起始值
      */
     public static ListNode getFixLengthListNode(Integer length, Integer beginValue) {
+        if (length <= 0) {
+            return null;
+        }
+
         ListNode pre = new ListNode(0);
         ListNode beginNode = new ListNode(beginValue++);
         pre.next = beginNode;
 
         while (--length != 0) {
-
             // 不断的拼接 node 节点
             beginNode.next = new ListNode(beginValue++);
             beginNode = beginNode.next;

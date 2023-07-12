@@ -29,8 +29,6 @@ public class Exercise30 {
         return pre;
     }
 
-    private ListNode pre2;
-
     /**
      * 递归法解决
      */
