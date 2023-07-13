@@ -23,9 +23,9 @@ public class Exercise31 {
         DoubleNodeUtil.print(exercise31.head);
     }
 
-    private DoubleNode head;
+    private DoubleNode<Integer> head;
 
-    private DoubleNode tail;
+    private DoubleNode<Integer> tail;
 
     private int size;
 
@@ -45,7 +45,7 @@ public class Exercise31 {
      * 在链表头插入节点
      */
     public void insertAtTheBeginning(Integer val) {
-        DoubleNode node = new DoubleNode(val);
+        DoubleNode<Integer> node = new DoubleNode<>(val);
         if (isEmpty()) {
             // 空的话
             head = node;
@@ -63,7 +63,7 @@ public class Exercise31 {
      * 在链表尾插入节点
      */
     public void insertAtTheEnding(Integer val) {
-        DoubleNode node = new DoubleNode(val);
+        DoubleNode<Integer> node = new DoubleNode<>(val);
         if (isEmpty()) {
             tail = node;
             head = tail;
@@ -115,15 +115,15 @@ public class Exercise31 {
      * 在指定节点前插入
      */
     public void insertBefore(int specific, int insertVal) {
-        DoubleNode node = head;
+        DoubleNode<Integer> node = head;
         while (node != null) {
             if (node.val == specific) {
                 if (node.pre == null) {
                     // 在头结点插入
                     insertAtTheBeginning(insertVal);
                 } else {
-                    DoubleNode insertNode = new DoubleNode(insertVal);
-                    DoubleNode preNode = node.pre;
+                    DoubleNode<Integer> insertNode = new DoubleNode<Integer>(insertVal);
+                    DoubleNode<Integer> preNode = node.pre;
 
                     // 构建双链表关联关系
                     preNode.next = insertNode;
@@ -142,15 +142,15 @@ public class Exercise31 {
      * 在指定节点后插入
      */
     public void insertAfter(int specific, int insertVal) {
-        DoubleNode node = head;
+        DoubleNode<Integer> node = head;
         while (node != null) {
             if (node.val == specific) {
                 if (node.next == null) {
                     // 在尾巴节点插入
                     insertAtTheEnding(insertVal);
                 } else {
-                    DoubleNode insetNode = new DoubleNode(insertVal);
-                    DoubleNode nextNode = node.next;
+                    DoubleNode<Integer> insetNode = new DoubleNode<>(insertVal);
+                    DoubleNode<Integer> nextNode = node.next;
 
                     // 构建双链表关系
                     insetNode.next = nextNode;
@@ -184,7 +184,7 @@ public class Exercise31 {
         }
 
         // 非空且不是头尾节点，遍历找找试试
-        DoubleNode node = head.next;
+        DoubleNode<Integer> node = head.next;
         while (node != null) {
             if (node.val == specific) {
                 node.pre.next = node.next;

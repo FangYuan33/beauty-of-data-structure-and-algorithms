@@ -6,15 +6,15 @@ package com.algorithms.linkedlist;
  * @author FangYuan
  * @since 2023-07-12 20:20:50
  */
-public class DoubleNode {
+public class DoubleNode<Item> {
 
-    public int val;
+    public Item val;
 
-    public DoubleNode pre;
+    public DoubleNode<Item> pre;
 
-    public DoubleNode next;
+    public DoubleNode<Item> next;
 
-    public DoubleNode(int val) {
+    public DoubleNode(Item val) {
         this.val = val;
     }
 
