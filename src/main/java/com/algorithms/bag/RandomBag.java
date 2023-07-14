@@ -3,7 +3,6 @@ package com.algorithms.bag;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
-import java.util.Random;
 
 /**
  * 随机背包，能够随机访问背包中的所有元素
