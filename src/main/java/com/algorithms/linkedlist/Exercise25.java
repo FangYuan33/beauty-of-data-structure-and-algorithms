@@ -1,5 +1,7 @@
 package com.algorithms.linkedlist;
 
+import com.algorithms.ListNodeUtil;
+
 /**
  * 链表课后练习25
  *

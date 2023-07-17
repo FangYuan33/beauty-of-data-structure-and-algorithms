@@ -1,4 +1,6 @@
-package com.algorithms.linkedlist;
+package com.algorithms;
+
+import com.algorithms.linkedlist.ListNode;
 
 /**
  * 链表工具类

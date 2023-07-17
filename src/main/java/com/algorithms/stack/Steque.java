@@ -1,7 +1,7 @@
 package com.algorithms.stack;
 
 import com.algorithms.linkedlist.ListNode;
-import com.algorithms.linkedlist.ListNodeUtil;
+import com.algorithms.ListNodeUtil;
 
 /**
  * 支持 push pop dequeue 操作的数据结果
