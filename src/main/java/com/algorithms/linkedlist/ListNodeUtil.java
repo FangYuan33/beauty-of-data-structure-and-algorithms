@@ -11,7 +11,7 @@ public class ListNodeUtil {
     /**
      * 打印结果
      */
-    public static void print(ListNode listNode) {
+    public static <Item> void print(ListNode<Item> listNode) {
         StringBuilder res = new StringBuilder();
 
         while (listNode != null) {
@@ -31,18 +31,18 @@ public class ListNodeUtil {
      * @param length     指定长度
      * @param beginValue 起始值
      */
-    public static ListNode getFixLengthListNode(Integer length, Integer beginValue) {
+    public static ListNode<Integer> getFixLengthListNode(Integer length, Integer beginValue) {
         if (length <= 0) {
             return null;
         }
 
-        ListNode pre = new ListNode(0);
-        ListNode beginNode = new ListNode(beginValue++);
+        ListNode<Integer> pre = new ListNode<>(0);
+        ListNode<Integer> beginNode = new ListNode<>(beginValue++);
         pre.next = beginNode;
 
         while (--length != 0) {
             // 不断的拼接 node 节点
-            beginNode.next = new ListNode(beginValue++);
+            beginNode.next = new ListNode<>(beginValue++);
             beginNode = beginNode.next;
         }
 

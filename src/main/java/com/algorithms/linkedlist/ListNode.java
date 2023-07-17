@@ -6,16 +6,16 @@ package com.algorithms.linkedlist;
  * @author FangYuan
  * @since 2023-07-11 19:56:58
  */
-public class ListNode {
+public class ListNode<Item> {
 
-    public int val;
-    public ListNode next;
+    public Item val;
+    public ListNode<Item> next;
 
-    public ListNode(int val) {
+    public ListNode(Item val) {
         this.val = val;
     }
 
-    ListNode(int val, ListNode next) {
+    ListNode(Item val, ListNode<Item> next) {
         this.val = val;
         this.next = next;
     }

@@ -27,7 +27,7 @@ public class Exercise29 {
      */
     private int size = 0;
 
-    ListNode last;
+    ListNode<Integer> last;
 
     public boolean isEmpty() {
         return size == 0;
@@ -41,7 +41,7 @@ public class Exercise29 {
      * 元素入队
      */
     public void enqueue(Integer val) {
-        ListNode newTail = new ListNode(val);
+        ListNode<Integer> newTail = new ListNode<>(val);
 
         if (isEmpty()) {
             // 初始化

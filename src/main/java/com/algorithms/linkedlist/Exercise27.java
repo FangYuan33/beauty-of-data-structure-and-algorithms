@@ -9,14 +9,14 @@ package com.algorithms.linkedlist;
 public class Exercise27 {
 
     public static void main(String[] args) {
-        ListNode node = ListNodeUtil.getFixLengthListNode(5, 9);
+        ListNode<Integer> node = ListNodeUtil.getFixLengthListNode(5, 9);
         System.out.println(new Exercise27().max(node));
     }
 
     /**
      * 在正整数链表中返回它们中的最大值
      */
-    private int max(ListNode listNode) {
+    private int max(ListNode<Integer> listNode) {
         if (listNode == null) {
             return 0;
         }

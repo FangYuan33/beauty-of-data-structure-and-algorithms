@@ -9,7 +9,7 @@ package com.algorithms.linkedlist;
 public class Exercise28 {
 
     public static void main(String[] args) {
-        ListNode node = ListNodeUtil.getFixLengthListNode(5, 9);
+        ListNode<Integer> node = ListNodeUtil.getFixLengthListNode(5, 9);
         new Exercise28().max(node);
 
         System.out.println(max);
@@ -19,9 +19,8 @@ public class Exercise28 {
 
     /**
      * 递归法解决27题
-     * @param node
      */
-    private void max(ListNode node) {
+    private void max(ListNode<Integer> node) {
         // 递归结束条件
         if (node == null) {
             return;

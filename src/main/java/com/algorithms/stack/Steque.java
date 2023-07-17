@@ -24,9 +24,9 @@ public class Steque {
         System.out.println(steque.pop());
     }
 
-    private ListNode head;
+    private ListNode<Integer> head;
 
-    private ListNode tail;
+    private ListNode<Integer> tail;
 
     private int size;
 
@@ -43,10 +43,10 @@ public class Steque {
      */
     public void push(int val) {
         if (isEmpty()) {
-            head = new ListNode(val);
+            head = new ListNode<>(val);
             tail = head;
         } else {
-            tail.next = new ListNode(val);
+            tail.next = new ListNode<>(val);
             tail = tail.next;
         }
 
@@ -58,10 +58,10 @@ public class Steque {
      */
     public void enqueue(int val) {
         if (isEmpty()) {
-            head = new ListNode(val);
+            head = new ListNode<>(val);
             tail = head;
         } else {
-            ListNode newHead = new ListNode(val);
+            ListNode<Integer> newHead = new ListNode<>(val);
             newHead.next = head;
             head = newHead;
         }
@@ -83,7 +83,7 @@ public class Steque {
 
             return result;
         } else {
-            ListNode node = head;
+            ListNode<Integer> node = head;
             while (node.next.next != null) {
                 node = node.next;
             }
