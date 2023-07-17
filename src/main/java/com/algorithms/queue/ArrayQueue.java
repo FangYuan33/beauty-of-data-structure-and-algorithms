@@ -5,12 +5,13 @@ package com.algorithms.queue;
  * 因为数组删除元素的时间复杂度为 O(n)，所以不适合来实现队列
  * 但是我们可以借助首尾指针，并把数组看作一个环来实现
  */
-public class ArrayQueue {
+@SuppressWarnings("unchecked")
+public class ArrayQueue<Item> {
 
     /**
      * 首尾指针
      */
-    private int front = 0;
+    private int head = 0;
     private int tail = 0;
 
     /**
@@ -21,13 +22,21 @@ public class ArrayQueue {
     /**
      * 保存数据的数组
      */
-    private final int[] arrayQueue;
+    private final Item[] arrayQueue;
 
     public ArrayQueue(int capacity) {
-        arrayQueue = new int[capacity];
+        arrayQueue = (Item[]) new Object[capacity];
     }
 
-    public void offer(int num) {
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void offer(Item num) {
         if (size == arrayQueue.length) {
             System.out.println("队列已满！！！");
         } else {
@@ -39,15 +48,15 @@ public class ArrayQueue {
         }
     }
 
-    public int poll() {
-        if (size == 0) {
+    public Item poll() {
+        if (isEmpty()) {
             System.out.println("队列没有数据！！！");
 
-            return -1;
+            return null;
         } else {
             size--;
-            int result = arrayQueue[front];
-            front = ++front % arrayQueue.length;
+            Item result = arrayQueue[head];
+            head = ++head % arrayQueue.length;
 
             return result;
         }
